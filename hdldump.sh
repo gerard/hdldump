@@ -8,10 +8,10 @@ HDL_CMD=$1 && shift
 
 if [ "$1" = "$PS2_IP" ] ; then
     # No shortcut for the IP is used
-    $HDL_BIN $HDL_CMD $@
+    $HDL_BIN $HDL_CMD "$@"
 else 
     [ -z "$PS2_IP" ] && echo "E: Set PS2_IP environment variable" && exit 1
-    $HDL_BIN $HDL_CMD $PS2_IP $@
+    $HDL_BIN $HDL_CMD $PS2_IP "$@"
 fi
 
 exit $?
