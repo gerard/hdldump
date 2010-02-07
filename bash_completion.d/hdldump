@@ -1,0 +1,22 @@
+# vim: set filetype=sh :
+
+_hdldump() 
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    if [ "$prev" == "hdldump" -o "$prev" == "hdl_dump" ] ; then
+        opts="$opts dump compare_iin toc hdl_toc delete info extract"
+        opts="$opts inject_cd inject_dvd install cdvd_info cdvd_info2"
+        opts="$opts poweroff initialize backup_toc restore_toc diag modify"
+    else 
+        return 1
+    fi
+
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    return 0
+}
+complete -o default -F _hdldump hdldump
+complete -o default -F _hdldump hdl_dump
